@@ -13,6 +13,8 @@
                     <tr>
                         <th>Id</th>
                         <th>Full name</th>
+                        <th>City</th>
+                        <th>Country</th>
                         <th></th>
                     </tr>
                     </thead>
@@ -21,6 +23,13 @@
                     <tr>
                         <td><?php echo $user->getId(); ?></td>
                         <td><?php echo $user->getFullName(); ?></td>
+                        <td>
+                            <?php 
+                                $address = $user->getAddress();
+                                echo ($address === Null) ? '--' : $address->getCity();  
+                            ?>
+                        </td>
+                        <td><?php echo ($address === Null) ? '--' : $address->getCountry();?></td>   
                         <td>
                             <a href="<?php echo $this->url('user', array('action'=>'edit', 'id' => $user->getId()));?>">Edit</a> |
                             <a href="<?php echo $this->url('user', array('action'=>'delete', 'id' => $user->getId()));?>">Delete</a>
