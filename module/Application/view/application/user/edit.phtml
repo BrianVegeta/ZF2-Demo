@@ -5,5 +5,7 @@
 <h1><?php echo $this->escapeHtml($title); ?></h1>
 <form method="post">
   fullname: <input type="text" name="fullname" value="<?php echo $user->getFullname(); ?>"><br>
+  city: <input type="text" name="city" value="<?php echo $user->getAddress()->getCity(); ?>"><br>
+  country: <input type="text" name="country" value="<?php echo $user->getAddress()->getCountry(); ?>"><br>
   <input type="submit" value="Submit" class="btn">
 </form>

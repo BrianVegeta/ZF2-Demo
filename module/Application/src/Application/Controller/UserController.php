@@ -6,6 +6,8 @@ namespace Application\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Entity\User;
+use Application\Entity\Address;
+use Application\Entity\Project;
 
 class UserController extends AbstractActionController
 {
@@ -21,10 +23,27 @@ class UserController extends AbstractActionController
 	public function addAction()
 	{
 		if ($this->request->isPost()) {
+		    $fullname = $this->getRequest()->getPost('fullname');
+		    $city = $this->getRequest()->getPost('city');
+		    $country = $this->getRequest()->getPost('country');
+// 		    $projectName = $this->getRequest()->getPost('projectName');
+		    
 			$user = new User();
-			$user->setFullName($this->getRequest()->getPost('fullname'));
-
+			$user->setFullName($fullname);
 			$this->getObjectManager()->persist($user);
+			
+			$address = new Address();
+			$address->setCity($city);
+			$address->setCountry($country);
+			$this->getObjectManager()->persist($address);
+			
+// 			$project = new Project();
+// 			$project->setName($projectName);
+// 			$this->getObjectManager()->persist($project);
+			
+			$user->setAddress($address);
+// 			$user->getProjects()->add($project);
+
 			$this->getObjectManager()->flush();
 			$newId = $user->getId();
 
@@ -39,9 +58,26 @@ class UserController extends AbstractActionController
 		$user = $this->getObjectManager()->find('\Application\Entity\User', $id);
 
 		if ($this->request->isPost()) {
-			$user->setFullName($this->getRequest()->getPost('fullname'));
-
+			$fullname = $this->getRequest()->getPost('fullname');
+		    $city = $this->getRequest()->getPost('city');
+		    $country = $this->getRequest()->getPost('country');
+// 		    $projectName = $this->getRequest()->getPost('projectName');
+		    
+			$user->setFullName($fullname);
 			$this->getObjectManager()->persist($user);
+			
+			$address = $user->getAddress();
+			$address->setCity($city);
+			$address->setCountry($country);
+			$this->getObjectManager()->persist($address);
+			
+// 			$project = $user->getProjects()->first();
+// 			$project->setName($projectName);
+// 			$this->getObjectManager()->persist($project);
+			
+			$user->setAddress($address);
+// 			$user->getProjects()->add($project);
+
 			$this->getObjectManager()->flush();
 
 			return $this->redirect()->toRoute('user');
@@ -57,6 +93,7 @@ class UserController extends AbstractActionController
 
 		if ($this->request->isPost()) {
 			$this->getObjectManager()->remove($user);
+			$this->getObjectManager()->remove($user->getAddress());
 			$this->getObjectManager()->flush();
 
 			return $this->redirect()->toRoute('user');

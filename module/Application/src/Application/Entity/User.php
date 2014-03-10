@@ -14,10 +14,10 @@ class User {
 	/** @ORM\Column(type="string") */
 	protected $fullName;
 	
-	/**
-	 * ASSOCIATIONS
-	 */
+	/** @ORM\ManyToOne(targetEntity="Address") */
 	protected $address;
+	
+	/** @ORM\ManyToMany(targetEntity="Project") */
 	protected $projects;
 	
 	
@@ -39,5 +39,20 @@ class User {
     public function setFullName($value)
     {
         $this->fullName = $value;
+    }
+    
+    public function getAddress()
+    {
+    	return $this->address;
+    }
+    
+    public function setAddress(Address $address)
+    {
+        $this->address = $address;
+    }
+    
+    public function getProjects()
+    {
+    	return $this->projects;
     }
 }
