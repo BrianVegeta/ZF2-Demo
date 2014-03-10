@@ -65,4 +65,10 @@ return array(
             'Album' => __DIR__ . '/../view',
         ),
     ),
+    'service_manager' => array (
+		'factories' => array(
+			'album.table.gateway' => 'Album\Service\Factory\AlbumTableGateway',
+		    'album.model.albumTable' => 'Album\Service\Factory\Album',
+		),
+    ),  
 );
