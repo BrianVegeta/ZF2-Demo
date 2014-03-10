@@ -8,6 +8,20 @@
  */
 
 return array(
+    'doctrine' => array(
+		'driver' => array(
+			'application_entities' => array(
+				'class' =>'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+				'cache' => 'array',
+				'paths' => array(__DIR__ . '/../src/Application/Entity'),
+			),
+            'orm_default' => array(
+				'drivers' => array(
+					'Application\Entity' => 'application_entities'
+				),
+            ),
+        ),
+    ),    
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -19,6 +33,20 @@ return array(
                         'action'     => 'index',
                     ),
                 ),
+            ),
+            'user' => array(
+        		'type'    => 'segment',
+        		'options' => array(
+    				'route'    => '/user[/][:action][/:id]',
+    				'constraints' => array(
+						'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+						'id'     => '[0-9]+',
+    				),
+    				'defaults' => array(
+						'controller' => 'Application\Controller\User',
+						'action'     => 'index',
+    				),
+        		),
             ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
@@ -69,7 +97,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\User' => 'Application\Controller\UserController'
         ),
     ),
     'view_manager' => array(
