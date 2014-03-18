@@ -2,7 +2,6 @@
 namespace Album\Service\Factory;
 
 use Zend\ServiceManager\FactoryInterface;
-use Zend\Db\Adapter\Adapter as DbAdapter;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
 use Album\Model\Album;

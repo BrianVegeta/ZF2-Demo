@@ -10,7 +10,7 @@ class User {
 	 * @ORM\Column(type="integer")
 	 */
 	protected $id;
-
+	
 	/** @ORM\Column(type="string") */
 	protected $fullName;
 	

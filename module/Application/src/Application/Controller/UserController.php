@@ -7,7 +7,6 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Application\Entity\User;
 use Application\Entity\Address;
-use Application\Entity\Project;
 
 class UserController extends AbstractActionController
 {
