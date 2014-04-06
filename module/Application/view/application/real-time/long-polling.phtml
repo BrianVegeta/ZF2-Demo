@@ -1,0 +1,19 @@
+<h1>Response from server:</h1>
+<div id="response"></div>
+
+<script>
+function getContent(timestamp)
+{
+    var queryString = {'timestamp' : timestamp};
+
+    $.get('/long_polling', queryString, function(data) {
+        $('#response').html(data.data_from_file);
+        getContent(data.timestamp);
+    });
+}
+
+// initialize jQuery
+$(function() {
+    getContent();
+});
+</script>

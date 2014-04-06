@@ -16,7 +16,7 @@
         <!-- Scripts -->
         <?php echo $this->headScript()->prependFile($this->basePath() . '/js/html5.js', 'text/javascript', array('conditional' => 'lt IE 9',))
                                       ->prependFile($this->basePath() . '/js/bootstrap.min.js')
-                                      ->prependFile($this->basePath() . '/js/jquery.min.js') ?>
+                                      ->prependFile($this->basePath() . '/js/jquery-1.11.0.min.js') ?>
 
     </head>
     <body>
@@ -33,6 +33,7 @@
                         <ul class="nav">
                             <li class="active"><a href="<?php echo $this->url('home') ?>"><?php echo $this->translate('Home') ?></a></li>
                             <li class=""><a href="<?php echo $this->url('user') ?>"><?php echo $this->translate('User') ?></a></li>
+                            <li class=""><a href="<?php echo $this->url('long-polling') ?>"><?php echo $this->translate('Long Polling') ?></a></li>
                         </ul>
                     </div><!--/.nav-collapse -->
                 </div>

@@ -48,6 +48,16 @@ return array(
     				),
         		),
             ),
+            'long-polling' => array(
+        		'type'    => 'segment',
+        		'options' => array(
+    				'route'    => '/long_polling',
+    				'defaults' => array(
+						'controller' => 'Application\Controller\RealTime',
+						'action'     => 'longPolling',
+    				),
+        		),
+            ),
             // The following is a route to simplify getting started creating
             // new controllers and actions without needing to create a new
             // module. Simply drop new controllers in, and you can access them
@@ -98,7 +108,8 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\User' => 'Application\Controller\UserController'
+            'Application\Controller\User' => 'Application\Controller\UserController',
+            'Application\Controller\RealTime' => 'Application\Controller\RealTimeController',
         ),
     ),
     'view_manager' => array(
@@ -115,6 +126,9 @@ return array(
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
+        ),
+        'strategies' => array(
+    		'ViewJsonStrategy',
         ),
     ),
 );
